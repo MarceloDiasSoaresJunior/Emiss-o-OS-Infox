@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70699b92-5a8d-42c9-b946-d68ff83a379b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="valor" uuid="4167d7b7-0675-49d1-92bd-e2028dffaecc">
+		<queryString>
+			<![CDATA[SELECT FORMAT(sum(VALOR),2,'de_DE')  FROM TBOS]]>
+		</queryString>
+		<field name="FORMAT(sum(VALOR),2,&apos;de_DE&apos;)" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dataSet" uuid="83ad4d1b-9a37-41fb-a12e-47ab6a95ea3f">
+		<queryString language="SQL">
+			<![CDATA[SELECT  * FROM TBOS]]>
+		</queryString>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+ OSER.OS,DATA_OS,TIPO,SITUACAO,EQUIPAMENTO,VALOR,RESPONSAVEL,
+CLI.NOMECLI,FONECLI,format(VALOR,2,'de_DE')
+ FROM TBOS  AS OSER
+ INNER JOIN TBCLIENTES as cli
+ on (CLI.idcliENTE = OSER.IDCLIENTE)WHERE OSER.TIPO='OS';]]>
+	</queryString>
+	<field name="OS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATA_OS" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SITUACAO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RESPONSAVEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMECLI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="format(VALOR,2,&apos;de_DE&apos;)" class="java.lang.String"/>
+	<field name="field1" class="java.lang.String"/>
+	<variable name="soma" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{format(VALOR,2,'de_DE')}.$F{OS}]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.math.BigDecimal" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="216" y="0" width="102" height="34" uuid="b30d00a7-c26e-4896-a71d-1e9571b194fc"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serviços]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="34" height="20" uuid="a8a5cf23-0943-4e43-9a5f-add13929640d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="41" width="73" height="20" uuid="db07db95-0c49-49a1-a45d-52d441dc907c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Da OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="41" width="100" height="20" uuid="b2dc37b4-6eb5-43ae-97e0-b809c5dea7c6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="41" width="100" height="20" uuid="aac8afb9-8aa6-435b-bbdc-9d5201c0c8f5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="41" width="100" height="20" uuid="97d28a3e-d338-4880-b771-9d96c42d99d4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="41" width="100" height="20" uuid="97a36700-0319-4edb-b7f8-4209418463ba"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="34" height="20" uuid="ba1ae35b-57be-4eb7-9fc4-b6ba0cfd7718"/>
+				<textFieldExpression><![CDATA[$F{OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="0" width="73" height="20" uuid="f7b58c3d-7111-4171-957d-7ddb14e7e475"/>
+				<textFieldExpression><![CDATA[$F{DATA_OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="100" height="20" uuid="acc68e37-1bd5-421a-abf4-4274d525f85e"/>
+				<textFieldExpression><![CDATA[$F{SITUACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="0" width="100" height="20" uuid="ac02d33c-33ce-4069-b2b2-5aa77b2f9fee"/>
+				<textFieldExpression><![CDATA[$F{RESPONSAVEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="100" height="20" uuid="a6614eff-4fec-43a6-9abb-852a95d55534"/>
+				<textFieldExpression><![CDATA[$F{NOMECLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="0" width="100" height="20" uuid="c8867f57-cabf-4d1b-b61b-ddd6a2a0e1a2"/>
+				<textFieldExpression><![CDATA[$F{format(VALOR,2,'de_DE')}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="34" width="85" height="20" uuid="2febe613-d499-4c88-9d7a-1caed1a45f39"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total: R$]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

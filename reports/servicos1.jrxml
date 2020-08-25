@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servicos1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="622a9afe-b10c-4492-802c-20256f93a20c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="valores" uuid="060a56de-b8ff-4c5a-a313-aae331903121">
+		<queryString>
+			<![CDATA[select valor,responsavel,min(valor),max(valor) from tbos;]]>
+		</queryString>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="responsavel" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="min(valor)" class="java.math.BigDecimal"/>
+		<field name="max(valor)" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="valores1" uuid="3e1ab7c1-8ed9-4b6a-ac04-7fe822b0c537">
+		<queryString language="SQL">
+			<![CDATA[select responsavel,min(valor),max(valor) from tbos]]>
+		</queryString>
+		<field name="responsavel" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="min(valor)" class="java.math.BigDecimal"/>
+		<field name="max(valor)" class="java.math.BigDecimal"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+ OSER.OS,DATA_OS,TIPO,SITUACAO,EQUIPAMENTO,VALOR,RESPONSAVEL,
+CLI.NOMECLI,FONECLI,format(VALOR,2,'de_DE')
+ FROM TBOS  AS OSER
+ INNER JOIN TBCLIENTES as cli
+ on (CLI.idcliENTE = OSER.IDCLIENTE)WHERE OSER.TIPO='OS';]]>
+	</queryString>
+	<field name="OS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATA_OS" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SITUACAO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EQUIPAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VALOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RESPONSAVEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMECLI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FONECLI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="format(VALOR,2,&apos;de_DE&apos;)" class="java.lang.String"/>
+	<variable name="SOMA" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{VALOR}]]></variableExpression>
+	</variable>
+	<variable name="FORMAT(sum(VALOR),2,&apos;de_DE&apos;)_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{FORMAT(sum(VALOR),2,'de_DE')}]]></variableExpression>
+	</variable>
+	<variable name="VALORFINAL_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{VALORFINAL}]]></variableExpression>
+	</variable>
+	<group name="OS">
+		<groupExpression><![CDATA[$F{OS}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="31" uuid="b9091fc7-3f9f-4c54-91f0-81405a454972"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Serviços]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="21e7b71c-ddc6-4d29-99a9-b0ccc87f64f5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="20" uuid="7fc6a9f6-3f03-46f6-be63-d1f139173031"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="0" width="66" height="20" uuid="fd9fb92a-cfe4-47ce-9919-2643fd426343"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Da OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="0" width="68" height="20" uuid="d4de9dda-1a54-4883-a251-f7649120b57a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="100" height="20" uuid="62d0bf0d-dfe3-4e77-8704-80c649612fe8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="995ea6bd-eb8b-401a-a3c6-9b540380e2b1"/>
+				<text><![CDATA[Valor do Serviço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="0" width="100" height="20" uuid="1a011125-9e16-4a48-a480-b835ea84c6ad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="40" height="20" uuid="6bc49bb6-da99-4a26-98cd-2c81162dece6"/>
+				<textFieldExpression><![CDATA[$F{OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="0" width="47" height="20" uuid="5b1d1853-73c0-46f1-bb4b-002c4e5d5261"/>
+				<textFieldExpression><![CDATA[$F{DATA_OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="68" height="20" uuid="2bc7d120-7772-48b1-a5d0-a1fd40ebab77"/>
+				<textFieldExpression><![CDATA[$F{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="100" height="20" uuid="1d3964d2-9106-422b-af9f-8ea89ba93d02"/>
+				<textFieldExpression><![CDATA[$F{SITUACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="db664922-f1d1-4e45-a3fd-da50d41a0ec9"/>
+				<textFieldExpression><![CDATA[$F{format(VALOR,2,'de_DE')}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="100" height="20" uuid="8194ca4b-0446-4cb5-a8d1-2dcd3f1b8bc4"/>
+				<textFieldExpression><![CDATA[$F{EQUIPAMENTO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="daa3245a-bec0-4a6e-a1d9-cd2f61489b57"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="19" width="187" height="1" uuid="2cae939e-50ac-42ce-b77b-2028d7ff7724"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="87" height="20" uuid="bb11de6f-e4d4-4b49-88c3-2027adef4d16"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total: R$]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="109" splitType="Stretch">
+			<elementGroup/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="44" splitType="Stretch"/>
+	</summary>
+</jasperReport>

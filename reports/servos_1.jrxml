@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servos_1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="39f99cf9-514f-4e86-ad5b-347397f124c9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+ OSER.OS,DATA_OS,TIPO,SITUACAO,EQUIPAMENTO,VALOR,RESPONSAVEL,
+CLI.NOMECLI,FONECLI,format(VALOR,2,'de_DE')
+ FROM TBOS  AS OSER
+ INNER JOIN TBCLIENTES as cli
+ on (CLI.idcliENTE = OSER.IDCLIENTE)WHERE OSER.TIPO='OS';]]>
+	</queryString>
+	<field name="OS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATA_OS" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SITUACAO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EQUIPAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VALOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RESPONSAVEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMECLI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FONECLI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="format(VALOR,2,&apos;de_DE&apos;)" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String" calculation="Sum">
+		<variableExpression><![CDATA[$F{VALOR}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="0" width="132" height="49" uuid="96637720-e2c7-4996-bde3-a3c6b73b8c3f"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVIÇOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="58" height="20" uuid="004fd80a-d8d6-4695-aeb1-5e39aa0e0ea1"/>
+				<text><![CDATA[OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="0" width="100" height="20" uuid="32b628ea-d11e-432e-9e09-b8de7be6cc7f"/>
+				<text><![CDATA[Data OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="100" height="20" uuid="d8a964c8-42f5-48cd-99df-c442bb5b6ff8"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="0" width="100" height="20" uuid="1ab14c48-9393-484c-81dd-05431e2f08bb"/>
+				<text><![CDATA[RESPONSAVEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="0" width="100" height="20" uuid="384a0e1a-05b7-4d14-9caf-e7da2f870e6b"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="0" width="100" height="20" uuid="395843cb-28cf-4e76-aa23-f083a4d69c04"/>
+				<text><![CDATA[Fone]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="58" height="20" uuid="f16f2787-a9bf-4f09-b5b3-bd33fc25f1d2"/>
+				<textFieldExpression><![CDATA[$F{OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="0" width="100" height="20" uuid="a5d7c3c8-31b6-40e0-8dcb-d1356f76bf9b"/>
+				<textFieldExpression><![CDATA[$F{DATA_OS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="100" height="20" uuid="241ddd26-4cf4-400d-8f11-73cd8f523877"/>
+				<textFieldExpression><![CDATA[$F{format(VALOR,2,'de_DE')}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="0" width="100" height="20" uuid="4dc63c61-1ab3-489c-b9d1-d285b3d70bca"/>
+				<textFieldExpression><![CDATA[$F{RESPONSAVEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="0" width="100" height="20" uuid="3b47e0ff-27d4-4045-b685-511459597c99"/>
+				<textFieldExpression><![CDATA[$F{NOMECLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="0" width="100" height="20" uuid="e78ad503-ff25-44e5-bcf6-b75245f909f3"/>
+				<textFieldExpression><![CDATA[$F{FONECLI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

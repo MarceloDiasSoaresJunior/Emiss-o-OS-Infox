@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61122f89-b1a4-447e-823f-f7c4a4819912">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tb os]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="427" height="20" uuid="5ed6b99b-c2fd-446b-af10-f721104322b5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprovante de Pagamento Sapato esportivo Mandy tênis unisex Roxo ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="209" height="174" uuid="e79b374e-0dbf-478a-bdd2-c08dd1bf6c43"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\Screenshot_2.png"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="231" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="490" height="231" uuid="2acf6130-6ad6-46c4-a59a-534bbe3015d6"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\Screenshot_1.png"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
